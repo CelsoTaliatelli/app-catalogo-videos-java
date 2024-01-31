@@ -19,7 +19,7 @@ public abstract class Entity<ID extends Identifier> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Entity<?> entity = (Entity<?>) o;
-        return getId().equals(getId());
+        return getId().equals(entity.getId());
     }
 
     @Override
