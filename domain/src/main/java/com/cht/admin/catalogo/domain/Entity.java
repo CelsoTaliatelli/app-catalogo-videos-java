@@ -1,5 +1,7 @@
 package com.cht.admin.catalogo.domain;
 
+import com.cht.admin.catalogo.domain.validation.ValidationHandler;
+
 import java.util.Objects;
 
 public abstract class Entity<ID extends Identifier> {
@@ -9,6 +11,8 @@ public abstract class Entity<ID extends Identifier> {
         Objects.requireNonNull(id, "'id' should not to be null ");
         this.id = id;
     }
+
+    public abstract void validate(ValidationHandler handler);
 
     public ID getId() {
         return id;
