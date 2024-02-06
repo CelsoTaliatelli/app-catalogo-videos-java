@@ -2,6 +2,7 @@ package com.cht.admin.catalogo.application.category.create;
 
 import com.cht.admin.catalogo.domain.category.Category;
 import com.cht.admin.catalogo.domain.category.CategoryGateway;
+import com.cht.admin.catalogo.domain.validation.handler.Notification;
 import com.cht.admin.catalogo.domain.validation.handler.ThrowsValidationHandler;
 
 import java.util.Objects;
@@ -20,8 +21,14 @@ public class DefaultCreateCategoryUseCase extends CreateCategoryUseCase{
         final var aDescription = aCommand.Description();
         final var isActive = aCommand.isActive();
 
+        final var notification = Notification.create();
+
         final var aCategory = Category.newCategory(aName,aDescription,isActive);
-        aCategory.validate(new ThrowsValidationHandler());
+        aCategory.validate(notification);
+
+        if(notification.hasError()) {
+
+        }
 
         return CreateCategoryOutput.from(this.categoryGateway.create(aCategory));
     }
