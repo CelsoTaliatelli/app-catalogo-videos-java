@@ -3,13 +3,25 @@ package com.cht.admin.catalogo.application.category.create;
 import com.cht.admin.catalogo.domain.category.CategoryGateway;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Objects;
 
 import static org.mockito.AdditionalAnswers.returnsFirstArg;
 
+@ExtendWith(MockitoExtension.class)
 public class CreateCategoryUseCaseTest {
+
+    @InjectMocks
+    private DefaultCreateCategoryUseCase useCase;
+
+    @Mock
+    private CategoryGateway categoryGateway;
+
 
     @Test
     public void givenAValidCommand_whenCallsCreateCategory_shouldReturnCategoryID(){
@@ -19,10 +31,7 @@ public class CreateCategoryUseCaseTest {
 
         final var aCommand = CreateCategoryCommand.with(expectedName,expectedDescription,expectedIsActive);
 
-        final CategoryGateway categoryGateway = Mockito.mock(CategoryGateway.class);
         Mockito.when(categoryGateway.create(Mockito.any())).thenAnswer(returnsFirstArg());
-
-        final var useCase = new DefaultCreateCategoryUseCase(categoryGateway);
 
         final var actualOutput = useCase.execute(aCommand);
 
