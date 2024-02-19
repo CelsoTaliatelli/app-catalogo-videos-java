@@ -3,7 +3,6 @@ package com.cht.admin.catalogo.application.category.create;
 import com.cht.admin.catalogo.domain.category.Category;
 import com.cht.admin.catalogo.domain.category.CategoryGateway;
 import com.cht.admin.catalogo.domain.validation.handler.Notification;
-import com.cht.admin.catalogo.domain.validation.handler.ThrowsValidationHandler;
 import io.vavr.control.Either;
 
 import java.util.Objects;
