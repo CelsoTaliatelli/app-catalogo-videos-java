@@ -2,10 +2,8 @@ package com.cht.admin.catalogo.application;
 
 import com.cht.admin.catalogo.domain.category.Category;
 
-public class UseCase {
+public abstract class UseCase <IN, OUT>{
 
-    public Category execute(){
-        return new Category();
-    }
+    public abstract OUT execute(IN aIn);
 
 }
