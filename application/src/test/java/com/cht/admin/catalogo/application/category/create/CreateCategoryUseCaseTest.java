@@ -3,6 +3,7 @@ package com.cht.admin.catalogo.application.category.create;
 import com.cht.admin.catalogo.domain.category.CategoryGateway;
 import com.cht.admin.catalogo.domain.exceptions.DomainException;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -25,6 +26,11 @@ public class CreateCategoryUseCaseTest {
 
     @Mock
     private CategoryGateway categoryGateway;
+
+    @BeforeEach
+    void cleanUp(){
+        Mockito.reset(categoryGateway);
+    }
 
 
     @Test
