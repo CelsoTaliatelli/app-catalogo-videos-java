@@ -1,3 +1,10 @@
+mysql:
+  username: root
+  password: admin
+  schema: adm_videos
+  url: localhost:3306
+
+
 server:
   port: 8081
   compression:
