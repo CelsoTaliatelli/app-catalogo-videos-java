@@ -32,6 +32,7 @@ dependencies {
         exclude(module = "spring-boot-starter-tomcat")
     }
     implementation("org.springframework.boot:spring-boot-starter-undertow")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation(project(":domain"))
     implementation(project(":application"))
 
