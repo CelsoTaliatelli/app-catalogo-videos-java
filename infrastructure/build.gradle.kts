@@ -36,6 +36,7 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":application"))
 
+    implementation("mysql:mysql-connector-java")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
@@ -45,7 +46,7 @@ dependencies {
 flyway {
     url = System.getenv("FLYWAY_DB") ?: "jdbc:mysql://localhost:3306/adm_videos"
     user = System.getenv("FLYWAY_USER") ?: "root"
-    password = System.getenv("FLYWAY_PASS") ?: "123456"
+    password = System.getenv("FLYWAY_PASS") ?: "admin"
 }
 
 tasks.test {
