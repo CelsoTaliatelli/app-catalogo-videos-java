@@ -1,10 +1,11 @@
-package com.cht.admin.catalogo.infrastructure.category.persistence;
+package com.cht.admin.catalogo.infrastructure.category;
 
 import com.cht.admin.catalogo.domain.category.Category;
 import com.cht.admin.catalogo.domain.category.CategoryGateway;
 import com.cht.admin.catalogo.domain.category.CategoryID;
 import com.cht.admin.catalogo.domain.pagination.Pagination;
 import com.cht.admin.catalogo.domain.pagination.SearchQuery;
+import com.cht.admin.catalogo.infrastructure.category.persistence.CategoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

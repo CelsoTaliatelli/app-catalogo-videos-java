@@ -38,6 +38,7 @@ dependencies {
 
     implementation("mysql:mysql-connector-java")
 
+    testImplementation("org.flywaydb:flyway-core")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
     testRuntimeOnly("com.h2database:h2")
