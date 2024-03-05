@@ -11,7 +11,6 @@ import static org.springframework.core.env.AbstractEnvironment.DEFAULT_PROFILES_
 @SpringBootApplication
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
         System.setProperty(DEFAULT_PROFILES_PROPERTY_NAME,"development");
         SpringApplication.run(WebServerConfig.class,args);
     }
