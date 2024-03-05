@@ -1,6 +1,6 @@
-package com.cht.admin.catalogo.domain.pagination;
+package com.cht.admin.catalogo.domain.category;
 
-public record SearchQuery(
+public record CategorySearchQuery(
         int page,
         int perPage,
         String terms,
