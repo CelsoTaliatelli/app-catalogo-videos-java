@@ -1,4 +1,4 @@
-package com.cht.admin.catalogo.infrastructure.application.create;
+package com.cht.admin.catalogo.infrastructure.application.category.create;
 
 import com.cht.admin.catalogo.application.category.create.CreateCategoryCommand;
 import com.cht.admin.catalogo.application.category.create.CreateCategoryUseCase;
