@@ -31,6 +31,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web"){
         exclude(module = "spring-boot-starter-tomcat")
     }
+    implementation ("io.vavr:vavr:0.10.4")
     implementation("org.springframework.boot:spring-boot-starter-undertow")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation(project(":domain"))
