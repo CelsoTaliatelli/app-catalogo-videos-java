@@ -1,5 +1,10 @@
 package com.cht.admin.catalogo.infrastructure.api;
 
+import com.cht.admin.catalogo.domain.pagination.Pagination;
+import com.cht.admin.catalogo.infrastructure.category.models.CategoryListResponse;
+import com.cht.admin.catalogo.infrastructure.category.models.CategoryResponse;
+import com.cht.admin.catalogo.infrastructure.category.models.CreateCategoryRequest;
+import com.cht.admin.catalogo.infrastructure.category.models.UpdateCategoryRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -51,7 +56,7 @@ public interface CategoryAPI {
     })
     CategoryResponse getById(@PathVariable(name = "id") String id);
 
-    @PutMapping(
+   @PutMapping(
             value = "{id}",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
@@ -63,6 +68,7 @@ public interface CategoryAPI {
             @ApiResponse(responseCode = "500", description = "An internal server error was thrown"),
     })
     ResponseEntity<?> updateById(@PathVariable(name = "id") String id, @RequestBody UpdateCategoryRequest input);
+
 
     @DeleteMapping(
             value = "{id}",

@@ -1,0 +1,31 @@
+package com.cht.admin.catalogo.infrastructure.category.presenters;
+
+import com.cht.admin.catalogo.application.category.retrieve.get.CategoryOutput;
+import com.cht.admin.catalogo.application.category.retrieve.list.CategoryListOutput;
+import com.cht.admin.catalogo.infrastructure.category.models.CategoryListResponse;
+import com.cht.admin.catalogo.infrastructure.category.models.CategoryResponse;
+
+public interface CategoryApiPresenter {
+    static CategoryResponse present(final CategoryOutput output) {
+        return new CategoryResponse(
+                output.id().getValue(),
+                output.name(),
+                output.description(),
+                output.isActive(),
+                output.createdAt(),
+                output.updatedAt(),
+                output.deletedAt()
+        );
+    }
+
+    static CategoryListResponse present(final CategoryListOutput output) {
+        return new CategoryListResponse(
+                output.id().getValue(),
+                output.name(),
+                output.description(),
+                output.isActive(),
+                output.createdAt(),
+                output.deletedAt()
+        );
+    }
+}
