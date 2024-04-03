@@ -37,6 +37,11 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":application"))
 
+    implementation("org.springdoc:springdoc-openapi-webmvc-core:1.6.8")
+    implementation("org.springdoc:springdoc-openapi-ui:1.6.8")
+
+    implementation("com.fasterxml.jackson.module:jackson-module-afterburner")
+
     implementation("mysql:mysql-connector-java")
 
     testImplementation("org.flywaydb:flyway-core")
