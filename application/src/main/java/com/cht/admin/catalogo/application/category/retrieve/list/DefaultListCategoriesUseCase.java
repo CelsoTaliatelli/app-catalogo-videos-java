@@ -2,7 +2,7 @@ package com.cht.admin.catalogo.application.category.retrieve.list;
 
 import com.cht.admin.catalogo.domain.category.CategoryGateway;
 import com.cht.admin.catalogo.domain.pagination.Pagination;
-import com.cht.admin.catalogo.domain.category.CategorySearchQuery;
+import com.cht.admin.catalogo.domain.pagination.SearchQuery;
 
 import java.util.Objects;
 
@@ -15,7 +15,7 @@ public class DefaultListCategoriesUseCase extends ListCategoriesUseCase{
     }
 
     @Override
-    public Pagination<CategoryListOutput> execute(CategorySearchQuery aQuery) {
+    public Pagination<CategoryListOutput> execute(SearchQuery aQuery) {
         return this.categoryGateway.findAll(aQuery)
                 .map(CategoryListOutput::from);
     }

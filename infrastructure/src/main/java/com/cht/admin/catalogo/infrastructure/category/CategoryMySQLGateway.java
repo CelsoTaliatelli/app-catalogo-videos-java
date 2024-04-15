@@ -3,7 +3,7 @@ package com.cht.admin.catalogo.infrastructure.category;
 import com.cht.admin.catalogo.domain.category.Category;
 import com.cht.admin.catalogo.domain.category.CategoryGateway;
 import com.cht.admin.catalogo.domain.category.CategoryID;
-import com.cht.admin.catalogo.domain.category.CategorySearchQuery;
+import com.cht.admin.catalogo.domain.pagination.SearchQuery;
 import com.cht.admin.catalogo.domain.pagination.Pagination;
 import com.cht.admin.catalogo.infrastructure.category.persistence.CategoryJpaEntity;
 import com.cht.admin.catalogo.infrastructure.category.persistence.CategoryRepository;
@@ -56,7 +56,7 @@ public class CategoryMySQLGateway implements CategoryGateway {
     }
 
     @Override
-    public Pagination<Category> findAll(CategorySearchQuery aQuery) {
+    public Pagination<Category> findAll(SearchQuery aQuery) {
         final var page = PageRequest.of(
                 aQuery.page(),
                 aQuery.perPage(),

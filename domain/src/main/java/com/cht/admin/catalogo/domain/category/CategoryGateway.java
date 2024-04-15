@@ -1,6 +1,7 @@
 package com.cht.admin.catalogo.domain.category;
 
 import com.cht.admin.catalogo.domain.pagination.Pagination;
+import com.cht.admin.catalogo.domain.pagination.SearchQuery;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +16,7 @@ public interface CategoryGateway {
 
     Category update(Category aCategory);
 
-    Pagination<Category> findAll(CategorySearchQuery aQuery);
+    Pagination<Category> findAll(SearchQuery aQuery);
 
     List<CategoryID> existsByIds(Iterable<CategoryID> ids);
 }

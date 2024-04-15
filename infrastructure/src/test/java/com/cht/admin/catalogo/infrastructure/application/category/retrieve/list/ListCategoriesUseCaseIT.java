@@ -2,7 +2,7 @@ package com.cht.admin.catalogo.infrastructure.application.category.retrieve.list
 
 import com.cht.admin.catalogo.application.category.retrieve.list.ListCategoriesUseCase;
 import com.cht.admin.catalogo.domain.category.Category;
-import com.cht.admin.catalogo.domain.category.CategorySearchQuery;
+import com.cht.admin.catalogo.domain.pagination.SearchQuery;
 import com.cht.admin.catalogo.infrastructure.IntegrationTest;
 import com.cht.admin.catalogo.infrastructure.category.persistence.CategoryJpaEntity;
 import com.cht.admin.catalogo.infrastructure.category.persistence.CategoryRepository;
@@ -53,7 +53,7 @@ public class ListCategoriesUseCaseIT {
         final var expectedTotal = 0;
 
         final var aQuery =
-                new CategorySearchQuery(expectedPage, expectedPerPage, expectedTerms, expectedSort, expectedDirection);
+                new SearchQuery(expectedPage, expectedPerPage, expectedTerms, expectedSort, expectedDirection);
 
         final var actualResult = useCase.execute(aQuery);
 
@@ -84,7 +84,7 @@ public class ListCategoriesUseCaseIT {
         final var expectedDirection = "asc";
 
         final var aQuery =
-                new CategorySearchQuery(expectedPage, expectedPerPage, expectedTerms, expectedSort, expectedDirection);
+                new SearchQuery(expectedPage, expectedPerPage, expectedTerms, expectedSort, expectedDirection);
 
         final var actualResult = useCase.execute(aQuery);
 
@@ -114,7 +114,7 @@ public class ListCategoriesUseCaseIT {
         final var expectedTerms = "";
 
         final var aQuery =
-                new CategorySearchQuery(expectedPage, expectedPerPage, expectedTerms, expectedSort, expectedDirection);
+                new SearchQuery(expectedPage, expectedPerPage, expectedTerms, expectedSort, expectedDirection);
 
         final var actualResult = useCase.execute(aQuery);
 
@@ -144,7 +144,7 @@ public class ListCategoriesUseCaseIT {
         final var expectedTerms = "";
 
         final var aQuery =
-                new CategorySearchQuery(expectedPage, expectedPerPage, expectedTerms, expectedSort, expectedDirection);
+                new SearchQuery(expectedPage, expectedPerPage, expectedTerms, expectedSort, expectedDirection);
 
         final var actualResult = useCase.execute(aQuery);
 
