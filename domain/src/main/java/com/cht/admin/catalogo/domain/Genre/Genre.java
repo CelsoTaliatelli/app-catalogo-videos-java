@@ -66,6 +66,19 @@ public class Genre extends AggregateRoot<GenreID> {
         );
     }
 
+    public Genre update(final String aName, final boolean isActive, final List<CategoryID> categories) {
+        if(isActive) {
+            activate();
+        }else {
+            deactivate();
+        }
+        this.name = aName;
+        this.categories = new ArrayList<>(categories != null ? categories : Collections.emptyList());
+        this.updatedAt = InstantUtils.now();
+        selfValidate();
+        return this;
+    }
+
     public Genre deactivate() {
         if (getDeletedAt() == null) {
             this.deletedAt = InstantUtils.now();
