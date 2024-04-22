@@ -5,7 +5,7 @@ import com.cht.admin.catalogo.domain.category.Category;
 import com.cht.admin.catalogo.domain.category.CategoryGateway;
 import com.cht.admin.catalogo.domain.category.CategoryID;
 import com.cht.admin.catalogo.domain.exceptions.DomainException;
-import com.cht.admin.catalogo.infrastructure.IntegrationTest;
+import com.cht.admin.catalogo.IntegrationTest;
 import com.cht.admin.catalogo.infrastructure.category.persistence.CategoryJpaEntity;
 import com.cht.admin.catalogo.infrastructure.category.persistence.CategoryRepository;
 import org.junit.jupiter.api.Assertions;

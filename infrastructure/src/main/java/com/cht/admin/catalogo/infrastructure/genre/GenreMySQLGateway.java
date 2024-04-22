@@ -11,12 +11,14 @@ import com.cht.admin.catalogo.infrastructure.utils.SpecificationUtils;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 import java.util.Optional;
 
 import static org.springframework.data.jpa.domain.Specification.where;
 
+@Component
 public class GenreMySQLGateway implements GenreGateway {
 
     private final GenreRepository genreRepository;

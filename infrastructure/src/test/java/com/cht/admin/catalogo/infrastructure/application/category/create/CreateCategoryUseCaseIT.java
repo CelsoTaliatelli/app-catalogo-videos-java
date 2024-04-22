@@ -3,7 +3,7 @@ package com.cht.admin.catalogo.infrastructure.application.category.create;
 import com.cht.admin.catalogo.application.category.create.CreateCategoryCommand;
 import com.cht.admin.catalogo.application.category.create.CreateCategoryUseCase;
 import com.cht.admin.catalogo.domain.category.CategoryGateway;
-import com.cht.admin.catalogo.infrastructure.IntegrationTest;
+import com.cht.admin.catalogo.IntegrationTest;
 import com.cht.admin.catalogo.infrastructure.category.persistence.CategoryRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

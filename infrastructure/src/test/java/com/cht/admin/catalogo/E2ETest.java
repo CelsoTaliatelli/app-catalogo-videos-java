@@ -1,4 +1,4 @@
-package com.cht.admin.catalogo.infrastructure;
+package com.cht.admin.catalogo;
 
 import com.cht.admin.catalogo.infrastructure.configuration.WebServerConfig;
 import org.junit.jupiter.api.extension.ExtendWith;

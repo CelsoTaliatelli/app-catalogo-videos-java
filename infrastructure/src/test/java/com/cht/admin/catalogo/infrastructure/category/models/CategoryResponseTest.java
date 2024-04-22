@@ -1,6 +1,6 @@
 package com.cht.admin.catalogo.infrastructure.category.models;
 
-import com.cht.admin.catalogo.infrastructure.JacksonTest;
+import com.cht.admin.catalogo.JacksonTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
