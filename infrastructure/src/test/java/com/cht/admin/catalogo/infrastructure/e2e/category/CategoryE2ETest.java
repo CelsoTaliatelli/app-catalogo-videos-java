@@ -1,7 +1,7 @@
 package com.cht.admin.catalogo.infrastructure.e2e.category;
 
 import com.cht.admin.catalogo.domain.category.CategoryID;
-import com.cht.admin.catalogo.infrastructure.E2ETest;
+import com.cht.admin.catalogo.E2ETest;
 import com.cht.admin.catalogo.infrastructure.category.models.CategoryResponse;
 import com.cht.admin.catalogo.infrastructure.category.models.CreateCategoryRequest;
 import com.cht.admin.catalogo.infrastructure.category.models.UpdateCategoryRequest;

@@ -16,7 +16,7 @@ import com.cht.admin.catalogo.domain.exceptions.NotFoundException;
 import com.cht.admin.catalogo.domain.pagination.Pagination;
 import com.cht.admin.catalogo.domain.validation.Error;
 import com.cht.admin.catalogo.domain.validation.handler.Notification;
-import com.cht.admin.catalogo.infrastructure.ControllerTest;
+import com.cht.admin.catalogo.ControllerTest;
 import com.cht.admin.catalogo.infrastructure.category.models.CreateCategoryRequest;
 import com.cht.admin.catalogo.infrastructure.category.models.UpdateCategoryRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;

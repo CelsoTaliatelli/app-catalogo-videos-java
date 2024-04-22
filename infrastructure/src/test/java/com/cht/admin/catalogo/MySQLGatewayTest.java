@@ -1,4 +1,4 @@
-package com.cht.admin.catalogo.infrastructure;
+package com.cht.admin.catalogo;
 
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -12,8 +12,10 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 @ActiveProfiles("test-integration")
-@ComponentScan(includeFilters = {
-        @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*[MySQLGateway]")
+@ComponentScan(
+        basePackages = "com.cht.admin.catalogo",
+        includeFilters = {
+        @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".[MySQLGateway]")
 })
 @DataJpaTest
 @ExtendWith(CleanUpExtension.class)
