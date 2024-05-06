@@ -107,7 +107,7 @@ public class CastMemberTest {
         Assertions.assertNotNull(actualMember.getId());
 
         final var actualID = actualMember.getId();
-        final var actualCreatedAt = actualMember.getCreatedAt();git 
+        final var actualCreatedAt = actualMember.getCreatedAt();
         final var actualUpdatedAt = actualMember.getUpdatedAt();
 
         actualMember.update(expectedName, expectedType);
