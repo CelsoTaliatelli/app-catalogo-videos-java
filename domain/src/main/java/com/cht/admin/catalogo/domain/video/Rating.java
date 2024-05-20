@@ -18,6 +18,11 @@ public enum Rating {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
+
     public static Optional<Rating> of(final String label) {
         return Arrays.stream(Rating.values())
                 .filter(it -> it.name.equalsIgnoreCase(label))
