@@ -149,3 +149,5 @@ public final class Fixture {
         }
     }
 }
+
+//TODO:Ajustar o Fixure configurando apenas na camada de dominio

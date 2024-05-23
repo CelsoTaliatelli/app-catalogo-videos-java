@@ -11,7 +11,7 @@ import java.util.Set;
 
 public interface VideoRepository extends JpaRepository<VideoJpaEntity,String> {
     @Query("""
-            select distinct new com.fullcycle.admin.catalogo.domain.video.VideoPreview(
+            select distinct new com.cht.admin.catalogo.domain.video.VideoPreview(
                 v.id as id,
                 v.title as title,
                 v.description as description,
