@@ -2,6 +2,7 @@ package com.cht.admin.catalogo.domain.Genre;
 
 import com.cht.admin.catalogo.domain.Identifier;
 import com.cht.admin.catalogo.domain.category.CategoryID;
+import com.cht.admin.catalogo.domain.utils.IdUtils;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -15,15 +16,11 @@ public class GenreID extends Identifier {
     }
 
     public static GenreID unique(){
-        return new GenreID(UUID.randomUUID().toString().toLowerCase());
+        return new GenreID(IdUtils.uuid());
     }
 
     public static GenreID from(final String anID) {
         return new GenreID(anID);
-    }
-
-    public static GenreID from(final UUID anID) {
-        return new GenreID(anID.toString().toLowerCase());
     }
 
     @Override

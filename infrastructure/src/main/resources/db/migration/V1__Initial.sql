@@ -1,5 +1,6 @@
+/*podendo o id ser BINARY16 para melhor desempenho*/
 CREATE TABLE categories (
-  id CHAR(36) NOT NULL PRIMARY KEY,
+  id CHAR(32) NOT NULL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   description VARCHAR(4000),
   active BOOLEAN NOT NULL DEFAULT TRUE,

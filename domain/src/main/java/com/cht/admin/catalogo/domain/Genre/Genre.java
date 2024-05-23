@@ -51,7 +51,7 @@ public class Genre extends AggregateRoot<GenreID> {
             final Instant aUpdatedAt,
             final Instant aDeletedAt
     ) {
-        return new Genre(anId, aName, isActive, categories, aCreatedAt, aUpdatedAt, aDeletedAt);
+        return new Genre(anId, aName, isActive, categories, aCreatedAt, aDeletedAt, aUpdatedAt);
     }
 
     public static Genre with(final Genre aGenre) {
@@ -61,8 +61,8 @@ public class Genre extends AggregateRoot<GenreID> {
                 aGenre.active,
                 new ArrayList<>(aGenre.categories),
                 aGenre.createdAt,
-                aGenre.updatedAt,
-                aGenre.deletedAt
+                aGenre.deletedAt,
+                aGenre.updatedAt
         );
     }
 

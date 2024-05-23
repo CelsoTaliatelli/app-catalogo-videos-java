@@ -1,6 +1,7 @@
 package com.cht.admin.catalogo.domain.category;
 
 import com.cht.admin.catalogo.domain.Identifier;
+import com.cht.admin.catalogo.domain.utils.IdUtils;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -14,15 +15,11 @@ public class CategoryID extends Identifier {
     }
 
     public static CategoryID unique(){
-        return new CategoryID(UUID.randomUUID().toString().toLowerCase());
+        return new CategoryID(IdUtils.uuid());
     }
 
     public static CategoryID from(final String anID) {
         return new CategoryID(anID);
-    }
-
-    public static CategoryID from(final UUID anID) {
-        return new CategoryID(anID.toString().toLowerCase());
     }
 
     @Override
