@@ -1,9 +1,13 @@
 package com.cht.admin.catalogo.domain.video;
 
-public interface MediaResourceGateway {
-    AudioVideoMedia storeAudioVideo(VideoID anId, Resource aResource);
+import java.util.Optional;
 
-    ImageMedia storeImage(VideoID anId, Resource aResource);
+public interface MediaResourceGateway {
+    AudioVideoMedia storeAudioVideo(VideoID anId, VideoResource aResource);
+
+    ImageMedia storeImage(VideoID anId, VideoResource aResource);
+
+    Optional<Resource> getResource(VideoID anId, VideoMediaType type);
 
     void clearResources(VideoID anId);
 }
