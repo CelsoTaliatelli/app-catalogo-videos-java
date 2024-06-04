@@ -5,9 +5,11 @@ import com.cht.admin.catalogo.domain.castmember.CastMember;
 import com.cht.admin.catalogo.domain.castmember.CastMemberType;
 
 import com.cht.admin.catalogo.domain.category.Category;
+import com.cht.admin.catalogo.domain.utils.IdUtils;
 import com.cht.admin.catalogo.domain.video.Rating;
 import com.cht.admin.catalogo.domain.video.Resource;
 import com.cht.admin.catalogo.domain.video.Video;
+import com.cht.admin.catalogo.domain.video.VideoMediaType;
 import com.github.javafaker.Faker;
 
 import java.time.Year;
@@ -122,15 +124,17 @@ public final class Fixture {
             return FAKER.options().option(Rating.values());
         }
 
-        public static Resource resource(final Resource.Type type) {
+        public static Resource resource(final VideoMediaType type) {
             final String contentType = Match(type).of(
-                    Case($(List(Resource.Type.VIDEO, Resource.Type.TRAILER)::contains), "video/mp4"),
+                    Case($(List(VideoMediaType.VIDEO, VideoMediaType.TRAILER)::contains), "video/mp4"),
                     Case($(), "image/jpg")
             );
 
+            final String checksum = IdUtils.uuid();
+
             final byte[] content = "Conteudo".getBytes();
 
-            return Resource.with(content, contentType, type.name().toLowerCase(), type);
+            return Resource.with(content,checksum,contentType, type.name().toLowerCase());
         }
 
         public static String description() {

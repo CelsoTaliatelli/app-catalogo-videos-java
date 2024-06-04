@@ -42,6 +42,9 @@ dependencies {
 
     implementation("com.fasterxml.jackson.module:jackson-module-afterburner")
 
+    implementation("com.google.cloud:google-cloud-storage:2.14.0")
+    implementation("com.google.guava:guava:31.1-jre")
+
     implementation("mysql:mysql-connector-java")
 
     testImplementation("org.flywaydb:flyway-core")

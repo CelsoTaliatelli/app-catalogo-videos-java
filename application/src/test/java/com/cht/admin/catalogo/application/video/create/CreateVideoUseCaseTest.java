@@ -5,6 +5,7 @@ import com.cht.admin.catalogo.application.UseCaseTest;
 import com.cht.admin.catalogo.domain.Genre.GenreGateway;
 import com.cht.admin.catalogo.domain.castmember.CastMemberGateway;
 import com.cht.admin.catalogo.domain.category.CategoryGateway;
+import com.cht.admin.catalogo.domain.video.Resource;
 import com.cht.admin.catalogo.domain.video.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -60,11 +61,11 @@ public class CreateVideoUseCaseTest extends UseCaseTest {
                 Fixture.CastMembers.wesley().getId(),
                 Fixture.CastMembers.gabriel().getId()
         );
-        final Resource expectedVideo = Fixture.Videos.resource(Resource.Type.VIDEO);
-        final Resource expectedTrailer = Fixture.Videos.resource(Resource.Type.TRAILER);
-        final Resource expectedBanner = Fixture.Videos.resource(Resource.Type.BANNER);
-        final Resource expectedThumb = Fixture.Videos.resource(Resource.Type.THUMBNAIL);
-        final Resource expectedThumbHalf = Fixture.Videos.resource(Resource.Type.THUMBNAIL_HALF);
+        final Resource expectedVideo = Fixture.Videos.resource(VideoMediaType.VIDEO);
+        final Resource expectedTrailer = Fixture.Videos.resource(VideoMediaType.TRAILER);
+        final Resource expectedBanner = Fixture.Videos.resource(VideoMediaType.BANNER);
+        final Resource expectedThumb = Fixture.Videos.resource(VideoMediaType.THUMBNAIL);
+        final Resource expectedThumbHalf = Fixture.Videos.resource(VideoMediaType.THUMBNAIL_HALF);
 
         final var aCommand = CreateVideoCommand.with(
                 expectedTitle,
@@ -134,13 +135,12 @@ public class CreateVideoUseCaseTest extends UseCaseTest {
 
     private void mockAudioVideoMedia() {
         when(mediaResourceGateway.storeAudioVideo(any(), any())).thenAnswer(t -> {
-            final var resource = t.getArgument(1, Resource.class);
+            final var videoResource = t.getArgument(1, VideoResource.class);
+            final var resource = videoResource.resource();
             return AudioVideoMedia.with(
-                    UUID.randomUUID().toString(),
+                    resource.checksum(),
                     resource.name(),
-                    "/img",
-                    "",
-                    MediaStatus.PENDING
+                    "/img"
             );
         });
     }
