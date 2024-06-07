@@ -137,6 +137,10 @@ public final class Fixture {
             return Resource.with(content,checksum,contentType, type.name().toLowerCase());
         }
 
+        public static VideoMediaType mediaType() {
+            return FAKER.options().option(VideoMediaType.values());
+        }
+
         public static String description() {
             return FAKER.options().option(
                     """
