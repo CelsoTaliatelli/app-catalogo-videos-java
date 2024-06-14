@@ -15,6 +15,7 @@ import java.util.Optional;
 import java.util.Set;
 
 public class Video extends AggregateRoot<VideoID> {
+
     private String title;
     private String description;
     private Year launchedAt;
@@ -80,7 +81,7 @@ public class Video extends AggregateRoot<VideoID> {
 
     @Override
     public void validate(final ValidationHandler handler) {
-
+        new VideoValidator(this, handler).validate();
     }
 
     public Video update(
@@ -318,5 +319,29 @@ public class Video extends AggregateRoot<VideoID> {
                 genres,
                 members
         );
+    }
+
+    public Video processing(final VideoMediaType aType) {
+        if (VideoMediaType.VIDEO == aType) {
+            getVideo()
+                    .ifPresent(media -> setVideo(media.processing()));
+        } else if (VideoMediaType.TRAILER == aType) {
+            getTrailer()
+                    .ifPresent(media -> setTrailer(media.processing()));
+        }
+
+        return this;
+    }
+
+    public Video completed(final VideoMediaType aType, final String encodedPath) {
+        if (VideoMediaType.VIDEO == aType) {
+            getVideo()
+                    .ifPresent(media -> setVideo(media.completed(encodedPath)));
+        } else if (VideoMediaType.TRAILER == aType) {
+            getTrailer()
+                    .ifPresent(media -> setTrailer(media.completed(encodedPath)));
+        }
+
+        return this;
     }
 }
