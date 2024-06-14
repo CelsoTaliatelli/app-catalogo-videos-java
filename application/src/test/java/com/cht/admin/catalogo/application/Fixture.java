@@ -6,10 +6,7 @@ import com.cht.admin.catalogo.domain.castmember.CastMemberType;
 
 import com.cht.admin.catalogo.domain.category.Category;
 import com.cht.admin.catalogo.domain.utils.IdUtils;
-import com.cht.admin.catalogo.domain.video.Rating;
-import com.cht.admin.catalogo.domain.video.Resource;
-import com.cht.admin.catalogo.domain.video.Video;
-import com.cht.admin.catalogo.domain.video.VideoMediaType;
+import com.cht.admin.catalogo.domain.video.*;
 import com.github.javafaker.Faker;
 
 import java.time.Year;
@@ -101,6 +98,12 @@ public final class Fixture {
         }
     }
 
+    public static String checksum() {
+        return "03fe62de";
+    }
+
+
+
     public static final class Videos {
 
         private static final Video SYSTEM_DESIGN = Video.newVideo(
@@ -115,6 +118,15 @@ public final class Fixture {
                 Set.of(Genres.tech().getId()),
                 Set.of(CastMembers.wesley().getId(), CastMembers.gabriel().getId())
         );
+
+        public static ImageMedia image(final VideoMediaType type) {
+            final var checksum = Fixture.checksum();
+            return ImageMedia.with(
+                    checksum,
+                    type.name().toLowerCase(),
+                    "/images/" + checksum
+            );
+        }
 
         public static Video systemDesign() {
             return Video.with(SYSTEM_DESIGN);
@@ -136,6 +148,20 @@ public final class Fixture {
 
             return Resource.with(content,checksum,contentType, type.name().toLowerCase());
         }
+
+        public static VideoMediaType mediaType() {
+            return FAKER.options().option(VideoMediaType.values());
+        }
+
+        public static AudioVideoMedia audioVideo(final VideoMediaType type) {
+            final var checksum = Fixture.checksum();
+            return AudioVideoMedia.with(
+                    checksum,
+                    type.name().toLowerCase(),
+                    "/videos/" + checksum
+            );
+        }
+
 
         public static String description() {
             return FAKER.options().option(
