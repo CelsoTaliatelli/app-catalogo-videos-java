@@ -4,15 +4,13 @@ import com.cht.admin.catalogo.domain.AggregateRoot;
 import com.cht.admin.catalogo.domain.Genre.GenreID;
 import com.cht.admin.catalogo.domain.castmember.CastMemberID;
 import com.cht.admin.catalogo.domain.category.CategoryID;
+import com.cht.admin.catalogo.domain.events.DomainEvent;
 import com.cht.admin.catalogo.domain.utils.InstantUtils;
 import com.cht.admin.catalogo.domain.validation.ValidationHandler;
 
 import java.time.Instant;
 import java.time.Year;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 public class Video extends AggregateRoot<VideoID> {
 
@@ -57,9 +55,10 @@ public class Video extends AggregateRoot<VideoID> {
             final AudioVideoMedia aVideo,
             final Set<CategoryID> categories,
             final Set<GenreID> genres,
-            final Set<CastMemberID> members
+            final Set<CastMemberID> members,
+            final List<DomainEvent> domainEvents
     ) {
-        super(anId);
+        super(anId,domainEvents);
         this.title = aTitle;
         this.description = aDescription;
         this.launchedAt = aLaunchYear;
@@ -252,7 +251,8 @@ public class Video extends AggregateRoot<VideoID> {
                 null,
                 categories,
                 genres,
-                members
+                members,
+                null
         );
     }
 
@@ -275,7 +275,8 @@ public class Video extends AggregateRoot<VideoID> {
                 aVideo.getVideo().orElse(null),
                 new HashSet<>(aVideo.getCategories()),
                 new HashSet<>(aVideo.getGenres()),
-                new HashSet<>(aVideo.getCastMembers())
+                new HashSet<>(aVideo.getCastMembers()),
+                aVideo.getDomainEvents()
         );
     }
 
@@ -317,7 +318,8 @@ public class Video extends AggregateRoot<VideoID> {
                 aVideo,
                 categories,
                 genres,
-                members
+                members,
+                null
         );
     }
 
