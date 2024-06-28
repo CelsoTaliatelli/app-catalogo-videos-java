@@ -15,7 +15,6 @@ import org.mockito.Mock;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.AdditionalAnswers.returnsFirstArg;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -43,7 +42,7 @@ class UpdateMediaStatusUseCaseTest extends UseCaseTest {
         final var expectedMedia = Fixture.Videos.audioVideo(expectedType);
 
         final var aVideo = Fixture.Videos.systemDesign()
-                .setVideo(expectedMedia);
+                .updateVideoMedia(expectedMedia);
 
         final var expectedId = aVideo.getId();
 
@@ -94,7 +93,7 @@ class UpdateMediaStatusUseCaseTest extends UseCaseTest {
         final var expectedMedia = Fixture.Videos.audioVideo(expectedType);
 
         final var aVideo = Fixture.Videos.systemDesign()
-                .setVideo(expectedMedia);
+                .updateVideoMedia(expectedMedia);
 
         final var expectedId = aVideo.getId();
 
@@ -145,7 +144,7 @@ class UpdateMediaStatusUseCaseTest extends UseCaseTest {
         final var expectedMedia = Fixture.Videos.audioVideo(expectedType);
 
         final var aVideo = Fixture.Videos.systemDesign()
-                .setTrailer(expectedMedia);
+                .updateTrailerMedia(expectedMedia);
 
         final var expectedId = aVideo.getId();
 
@@ -196,7 +195,7 @@ class UpdateMediaStatusUseCaseTest extends UseCaseTest {
         final var expectedMedia = Fixture.Videos.audioVideo(expectedType);
 
         final var aVideo = Fixture.Videos.systemDesign()
-                .setTrailer(expectedMedia);
+                .updateTrailerMedia(expectedMedia);
 
         final var expectedId = aVideo.getId();
 
@@ -247,7 +246,7 @@ class UpdateMediaStatusUseCaseTest extends UseCaseTest {
         final var expectedMedia = Fixture.Videos.audioVideo(expectedType);
 
         final var aVideo = Fixture.Videos.systemDesign()
-                .setTrailer(expectedMedia);
+                .updateTrailerMedia(expectedMedia);
 
         final var expectedId = aVideo.getId();
 

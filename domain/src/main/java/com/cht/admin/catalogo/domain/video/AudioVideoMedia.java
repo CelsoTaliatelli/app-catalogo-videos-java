@@ -107,4 +107,8 @@ public class AudioVideoMedia extends ValueObject {
                 MediaStatus.COMPLETED
         );
     }
+
+    public boolean isPendigEncode() {
+        return this.status == MediaStatus.PENDING;
+    }
 }
