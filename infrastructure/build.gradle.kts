@@ -34,6 +34,7 @@ dependencies {
     implementation ("io.vavr:vavr:0.10.4")
     implementation("org.springframework.boot:spring-boot-starter-undertow")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-amqp")
     implementation(project(":domain"))
     implementation(project(":application"))
 
@@ -48,6 +49,7 @@ dependencies {
     implementation("mysql:mysql-connector-java")
 
     testImplementation("org.flywaydb:flyway-core")
+    testImplementation("org.springframework.amqp:spring-rabbit-test:2.4.4")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
 

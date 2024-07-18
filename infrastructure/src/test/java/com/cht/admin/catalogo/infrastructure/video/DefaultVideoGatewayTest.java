@@ -113,11 +113,11 @@ public class DefaultVideoGatewayTest {
                         expectedGenres,
                         expectedMembers
                 )
-                .setVideo(expectedVideo)
-                .setTrailer(expectedTrailer)
-                .setBanner(expectedBanner)
-                .setThumbnail(expectedThumb)
-                .setThumbnailHalf(expectedThumbHalf);
+                .updateVideoMedia(expectedVideo)
+                .updateTrailerMedia(expectedTrailer)
+                .updateBanner(expectedBanner)
+                .updateThumbnail(expectedThumb)
+                .updateThumbnailHalf(expectedThumbHalf);
 
         // when
         final var actualVideo = videoGateway.create(aVideo);

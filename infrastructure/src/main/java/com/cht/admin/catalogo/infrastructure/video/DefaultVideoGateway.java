@@ -3,6 +3,8 @@ package com.cht.admin.catalogo.infrastructure.video;
 import com.cht.admin.catalogo.domain.Identifier;
 import com.cht.admin.catalogo.domain.pagination.Pagination;
 import com.cht.admin.catalogo.domain.video.*;
+import com.cht.admin.catalogo.infrastructure.configuration.annotations.VideoCreatedQueue;
+import com.cht.admin.catalogo.infrastructure.services.EventService;
 import com.cht.admin.catalogo.infrastructure.utils.SqlUtils;
 import com.cht.admin.catalogo.infrastructure.video.persistence.VideoJpaEntity;
 import com.cht.admin.catalogo.infrastructure.video.persistence.VideoRepository;
@@ -21,9 +23,11 @@ import static com.cht.admin.catalogo.domain.utils.CollectionUtils.nullIfEmpty;
 public class DefaultVideoGateway implements VideoGateway {
 
     private final VideoRepository videoRepository;
+    private final EventService eventService;
 
-    public DefaultVideoGateway(final VideoRepository videoRepository) {
+    public DefaultVideoGateway(final VideoRepository videoRepository, @VideoCreatedQueue EventService eventService) {
         this.videoRepository = Objects.requireNonNull(videoRepository);
+        this.eventService = Objects.requireNonNull(eventService);
     }
     @Override
     @Transactional
@@ -77,7 +81,11 @@ public class DefaultVideoGateway implements VideoGateway {
     }
 
     private Video save(final Video aVideo) {
-        return this.videoRepository.save(VideoJpaEntity.from(aVideo))
+        var result = this.videoRepository.save(VideoJpaEntity.from(aVideo))
                 .toAggregate();
+
+        aVideo.publishDomainEvents(eventService::send);
+
+        return result;
     }
 }
