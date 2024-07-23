@@ -1,6 +1,7 @@
 package com.cht.admin.catalogo.domain.video;
 
 import com.cht.admin.catalogo.domain.Genre.GenreID;
+import com.cht.admin.catalogo.domain.UnitTest;
 import com.cht.admin.catalogo.domain.castmember.CastMemberID;
 import com.cht.admin.catalogo.domain.category.CategoryID;
 import com.cht.admin.catalogo.domain.exceptions.DomainException;
@@ -11,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.time.Year;
 import java.util.Set;
 
-public class VideoValidatorTest {
+public class VideoValidatorTest extends UnitTest {
     @Test
     public void givenNullTitle_whenCallsValidate_shouldReceiveError() {
         // given
