@@ -88,7 +88,7 @@ public class GenreAPITest {
         response.andExpect(status().isCreated())
                 .andExpect(header().string("Location", "/genres/" + expectedId))
                 .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.id", equalTo(expectedId)));
+                .andExpect(jsonPath("$.videoId", equalTo(expectedId)));
 
         verify(createGenreUseCase).execute(argThat(cmd ->
                 Objects.equals(expectedName, cmd.name())
@@ -153,7 +153,7 @@ public class GenreAPITest {
                 .thenReturn(GenreOutput.from(aGenre));
 
         // when
-        final var aRequest = get("/genres/{id}", expectedId)
+        final var aRequest = get("/genres/{videoId}", expectedId)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON);
 
@@ -162,7 +162,7 @@ public class GenreAPITest {
         // then
         response.andExpect(status().isOk())
                 .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.id", equalTo(expectedId)))
+                .andExpect(jsonPath("$.videoId", equalTo(expectedId)))
                 .andExpect(jsonPath("$.name", equalTo(expectedName)))
                 .andExpect(jsonPath("$.categories_id", equalTo(expectedCategories)))
                 .andExpect(jsonPath("$.is_active", equalTo(expectedIsActive)))
@@ -183,7 +183,7 @@ public class GenreAPITest {
                 .thenThrow(NotFoundException.with(Genre.class, expectedId));
 
         // when
-        final var aRequest = get("/genres/{id}", expectedId.getValue())
+        final var aRequest = get("/genres/{videoId}", expectedId.getValue())
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON);
 
@@ -214,7 +214,7 @@ public class GenreAPITest {
                 .thenReturn(UpdateGenreOutput.from(aGenre));
 
         // when
-        final var aRequest = put("/genres/{id}", expectedId)
+        final var aRequest = put("/genres/{videoId}", expectedId)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(this.mapper.writeValueAsString(aCommand));
 
@@ -224,7 +224,7 @@ public class GenreAPITest {
         // then
         response.andExpect(status().isOk())
                 .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.id", equalTo(expectedId)));
+                .andExpect(jsonPath("$.videoId", equalTo(expectedId)));
 
         verify(updateGenreUseCase).execute(argThat(cmd ->
                 Objects.equals(expectedName, cmd.name())
@@ -251,7 +251,7 @@ public class GenreAPITest {
                 .thenThrow(new NotificationException("Error", Notification.create(new Error(expectedErrorMessage))));
 
         // when
-        final var aRequest = put("/genres/{id}", expectedId)
+        final var aRequest = put("/genres/{videoId}", expectedId)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(this.mapper.writeValueAsString(aCommand));
 
@@ -280,7 +280,7 @@ public class GenreAPITest {
                 .when(deleteGenreUseCase).execute(any());
 
         // when
-        final var aRequest = delete("/genres/{id}", expectedId)
+        final var aRequest = delete("/genres/{videoId}", expectedId)
                 .accept(MediaType.APPLICATION_JSON);
 
         final var result = this.mvc.perform(aRequest);
@@ -327,7 +327,7 @@ public class GenreAPITest {
                 .andExpect(jsonPath("$.per_page", equalTo(expectedPerPage)))
                 .andExpect(jsonPath("$.total", equalTo(expectedTotal)))
                 .andExpect(jsonPath("$.items", hasSize(expectedItemsCount)))
-                .andExpect(jsonPath("$.items[0].id", equalTo(aGenre.getId().getValue())))
+                .andExpect(jsonPath("$.items[0].videoId", equalTo(aGenre.getId().getValue())))
                 .andExpect(jsonPath("$.items[0].name", equalTo(aGenre.getName())))
                 .andExpect(jsonPath("$.items[0].is_active", equalTo(aGenre.isActive())))
                 .andExpect(jsonPath("$.items[0].created_at", equalTo(aGenre.getCreatedAt().toString())))

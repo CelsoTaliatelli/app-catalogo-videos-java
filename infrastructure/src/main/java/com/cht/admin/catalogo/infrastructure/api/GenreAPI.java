@@ -46,7 +46,7 @@ public interface GenreAPI {
     );
 
     @GetMapping(
-            value = "{id}",
+            value = "{videoId}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     @Operation(summary = "Get a genre by it's identifier")
@@ -58,7 +58,7 @@ public interface GenreAPI {
     GenreResponse getById(@PathVariable(name = "id") String id);
 
     @PutMapping(
-            value = "{id}",
+            value = "{videoId}",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
@@ -71,7 +71,7 @@ public interface GenreAPI {
     ResponseEntity<?> updateById(@PathVariable(name = "id") String id, @RequestBody UpdateGenreRequest input);
 
     @DeleteMapping(
-            value = "{id}",
+            value = "{videoId}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     @ResponseStatus(HttpStatus.NO_CONTENT)

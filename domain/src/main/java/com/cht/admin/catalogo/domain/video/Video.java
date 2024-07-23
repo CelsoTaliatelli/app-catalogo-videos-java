@@ -115,6 +115,25 @@ public class Video extends AggregateRoot<VideoID> {
         return this;
     }
 
+    public Video updateBannerMedia(final ImageMedia banner) {
+        this.banner = banner;
+        this.updatedAt = InstantUtils.now();
+        return this;
+    }
+
+    public Video updateThumbnailMedia(final ImageMedia thumbnail) {
+        this.thumbnail = thumbnail;
+        this.updatedAt = InstantUtils.now();
+        return this;
+    }
+
+    public Video updateThumbnailHalfMedia(final ImageMedia thumbnailHalf) {
+        this.thumbnailHalf = thumbnailHalf;
+        this.updatedAt = InstantUtils.now();
+        return this;
+    }
+
+
     public Video updateThumbnail(final ImageMedia thumbnail) {
         this.thumbnail = thumbnail;
         this.updatedAt = InstantUtils.now();

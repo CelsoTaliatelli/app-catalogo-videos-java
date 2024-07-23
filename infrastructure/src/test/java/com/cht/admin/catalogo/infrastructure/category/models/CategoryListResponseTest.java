@@ -35,7 +35,7 @@ public class CategoryListResponseTest {
         final var actualJson = this.json.write(response);
 
         Assertions.assertThat(actualJson)
-                .hasJsonPathValue("$.id", expectedId)
+                .hasJsonPathValue("$.videoId", expectedId)
                 .hasJsonPathValue("$.name", expectedName)
                 .hasJsonPathValue("$.description", expectedDescription)
                 .hasJsonPathValue("$.is_active", expectedIsActive)

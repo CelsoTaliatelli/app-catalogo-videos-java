@@ -45,7 +45,7 @@ public interface CategoryAPI {
     );
 
     @GetMapping(
-            value = "{id}",
+            value = "{videoId}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     @Operation(summary = "Get a category by it's identifier")
@@ -57,7 +57,7 @@ public interface CategoryAPI {
     CategoryResponse getById(@PathVariable(name = "id") String id);
 
    @PutMapping(
-            value = "{id}",
+            value = "{videoId}",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
@@ -71,7 +71,7 @@ public interface CategoryAPI {
 
 
     @DeleteMapping(
-            value = "{id}",
+            value = "{videoId}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     @ResponseStatus(HttpStatus.NO_CONTENT)

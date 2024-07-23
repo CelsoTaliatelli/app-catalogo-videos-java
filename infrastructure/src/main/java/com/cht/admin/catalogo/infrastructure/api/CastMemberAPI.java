@@ -44,7 +44,7 @@ public interface CastMemberAPI {
             @RequestParam(name = "dir", required = false, defaultValue = "asc") final String direction
     );
 
-    @GetMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "{videoId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Get a cast member by it's identifier")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Cast member retrieved"),
@@ -54,7 +54,7 @@ public interface CastMemberAPI {
     CastMemberResponse getById(@PathVariable String id);
 
     @PutMapping(
-            value = "{id}",
+            value = "{videoId}",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
@@ -67,7 +67,7 @@ public interface CastMemberAPI {
     })
     ResponseEntity<?> updateById(@PathVariable String id, @RequestBody UpdateCastMemberRequest aBody);
 
-    @DeleteMapping(value = "{id}")
+    @DeleteMapping(value = "{videoId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(summary = "Delete a cast member by it's identifier")
     @ApiResponses(value = {
