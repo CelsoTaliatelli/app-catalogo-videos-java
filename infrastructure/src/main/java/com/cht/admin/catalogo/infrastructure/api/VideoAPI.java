@@ -1,11 +1,13 @@
 package com.cht.admin.catalogo.infrastructure.api;
 
 import com.cht.admin.catalogo.infrastructure.video.models.CreateVideoRequest;
+import com.cht.admin.catalogo.infrastructure.video.models.UpdateVideoRequest;
 import com.cht.admin.catalogo.infrastructure.video.models.VideoResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -65,5 +67,44 @@ public interface VideoAPI {
             @ApiResponse(responseCode = "500", description = "An internal server error was thrown"),
     })
     VideoResponse getById(@PathVariable(name = "videoId") String id);
+
+    ResponseEntity<?> update(
+            @PathVariable(name = "id") String id,
+            @RequestBody UpdateVideoRequest payload
+    );
+
+    @DeleteMapping(value = "{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Operation(summary = "Delete a video by it's identifier")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Video deleted"),
+            @ApiResponse(responseCode = "500", description = "An internal server error was thrown"),
+    })
+    void deleteById(@PathVariable(name = "id") String id);
+
+    @GetMapping(value = "{id}/medias/{type}")
+    @Operation(summary = "Get a video media by it's type")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Media retrieved successfully"),
+            @ApiResponse(responseCode = "404", description = "Media was not found"),
+            @ApiResponse(responseCode = "500", description = "An internal server error was thrown"),
+    })
+    ResponseEntity<byte[]> getMediaByType(
+            @PathVariable(name = "id") String id,
+            @PathVariable(name = "type") String type
+    );
+
+    @PostMapping(value = "{id}/medias/{type}")
+    @Operation(summary = "Upload a video media by it's type")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Media created successfully"),
+            @ApiResponse(responseCode = "404", description = "Video was not found"),
+            @ApiResponse(responseCode = "500", description = "An internal server error was thrown"),
+    })
+    ResponseEntity<?> uploadMediaByType(
+            @PathVariable(name = "id") String id,
+            @PathVariable(name = "type") String type,
+            @RequestParam(name = "media_file") MultipartFile media
+    );
 
 }
