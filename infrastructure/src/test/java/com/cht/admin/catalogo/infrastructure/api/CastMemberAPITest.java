@@ -88,7 +88,7 @@ public class CastMemberAPITest {
         response.andExpect(status().isCreated())
                 .andExpect(header().string("Location", "/cast_members/" + expectedId.getValue()))
                 .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.id", equalTo(expectedId.getValue())));
+                .andExpect(jsonPath("$.videoId", equalTo(expectedId.getValue())));
 
         verify(createCastMemberUseCase).execute(argThat(actualCmd ->
                 Objects.equals(expectedName, actualCmd.name())
@@ -144,7 +144,7 @@ public class CastMemberAPITest {
                 .thenReturn(CastMemberOutput.from(aMember));
 
         // when
-        final var aRequest = get("/cast_members/{id}", expectedId)
+        final var aRequest = get("/cast_members/{videoId}", expectedId)
                 .accept(MediaType.APPLICATION_JSON);
 
         final var response = this.mvc.perform(aRequest);
@@ -152,7 +152,7 @@ public class CastMemberAPITest {
         // then
         response.andExpect(status().isOk())
                 .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.id", equalTo(expectedId)))
+                .andExpect(jsonPath("$.videoId", equalTo(expectedId)))
                 .andExpect(jsonPath("$.name", equalTo(expectedName)))
                 .andExpect(jsonPath("$.type", equalTo(expectedType.name())))
                 .andExpect(jsonPath("$.created_at", equalTo(aMember.getCreatedAt().toString())))
@@ -171,7 +171,7 @@ public class CastMemberAPITest {
                 .thenThrow(NotFoundException.with(CastMember.class, expectedId));
 
         // when
-        final var aRequest = get("/cast_members/{id}", expectedId.getValue())
+        final var aRequest = get("/cast_members/{videoId}", expectedId.getValue())
                 .accept(MediaType.APPLICATION_JSON);
 
         final var response = this.mvc.perform(aRequest);
@@ -200,7 +200,7 @@ public class CastMemberAPITest {
                 .thenReturn(UpdateCastMemberOutput.from(expectedId.getValue()));
 
         // when
-        final var aRequest = put("/cast_members/{id}", expectedId.getValue())
+        final var aRequest = put("/cast_members/{videoId}", expectedId.getValue())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(aCommand));
 
@@ -210,7 +210,7 @@ public class CastMemberAPITest {
         // then
         response.andExpect(status().isOk())
                 .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.id", equalTo(expectedId.getValue())));
+                .andExpect(jsonPath("$.videoId", equalTo(expectedId.getValue())));
 
         verify(updateCastMemberUseCase).execute(argThat(actualCmd ->
                 Objects.equals(expectedId.getValue(), actualCmd.id())
@@ -237,7 +237,7 @@ public class CastMemberAPITest {
                 .thenThrow(NotificationException.with(new Error(expectedErrorMessage)));
 
         // when
-        final var aRequest = put("/cast_members/{id}", expectedId.getValue())
+        final var aRequest = put("/cast_members/{videoId}", expectedId.getValue())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(aCommand));
 
@@ -275,7 +275,7 @@ public class CastMemberAPITest {
                 .thenThrow(NotFoundException.with(CastMember.class, expectedId));
 
         // when
-        final var aRequest = put("/cast_members/{id}", expectedId.getValue())
+        final var aRequest = put("/cast_members/{videoId}", expectedId.getValue())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(aCommand));
 
@@ -304,7 +304,7 @@ public class CastMemberAPITest {
                 .when(deleteCastMemberUseCase).execute(any());
 
         // when
-        final var aRequest = delete("/cast_members/{id}", expectedId);
+        final var aRequest = delete("/cast_members/{videoId}", expectedId);
 
         final var response = this.mvc.perform(aRequest);
 
@@ -350,7 +350,7 @@ public class CastMemberAPITest {
                 .andExpect(jsonPath("$.per_page", equalTo(expectedPerPage)))
                 .andExpect(jsonPath("$.total", equalTo(expectedTotal)))
                 .andExpect(jsonPath("$.items", hasSize(expectedItemsCount)))
-                .andExpect(jsonPath("$.items[0].id", equalTo(aMember.getId().getValue())))
+                .andExpect(jsonPath("$.items[0].videoId", equalTo(aMember.getId().getValue())))
                 .andExpect(jsonPath("$.items[0].name", equalTo(aMember.getName())))
                 .andExpect(jsonPath("$.items[0].type", equalTo(aMember.getType().name())))
                 .andExpect(jsonPath("$.items[0].created_at", equalTo(aMember.getCreatedAt().toString())));
@@ -395,7 +395,7 @@ public class CastMemberAPITest {
                 .andExpect(jsonPath("$.per_page", equalTo(expectedPerPage)))
                 .andExpect(jsonPath("$.total", equalTo(expectedTotal)))
                 .andExpect(jsonPath("$.items", hasSize(expectedItemsCount)))
-                .andExpect(jsonPath("$.items[0].id", equalTo(aMember.getId().getValue())))
+                .andExpect(jsonPath("$.items[0].videoId", equalTo(aMember.getId().getValue())))
                 .andExpect(jsonPath("$.items[0].name", equalTo(aMember.getName())))
                 .andExpect(jsonPath("$.items[0].type", equalTo(aMember.getType().name())))
                 .andExpect(jsonPath("$.items[0].created_at", equalTo(aMember.getCreatedAt().toString())));

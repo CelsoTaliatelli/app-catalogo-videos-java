@@ -2,16 +2,13 @@ package com.cht.admin.catalogo;
 
 import com.cht.admin.catalogo.domain.castmember.CastMemberType;
 import com.cht.admin.catalogo.domain.utils.IdUtils;
-import com.cht.admin.catalogo.domain.video.VideoMediaType;
+import com.cht.admin.catalogo.domain.video.*;
 import com.github.javafaker.Faker;
 
 import com.cht.admin.catalogo.domain.Genre.Genre;
 import com.cht.admin.catalogo.domain.castmember.CastMember;
 
 import com.cht.admin.catalogo.domain.category.Category;
-import com.cht.admin.catalogo.domain.video.Rating;
-import com.cht.admin.catalogo.domain.video.Resource;
-import com.cht.admin.catalogo.domain.video.Video;
 
 import java.time.Year;
 import java.util.Set;
@@ -43,6 +40,10 @@ public final class Fixture {
                 "Não cometa esses erros ao trabalhar com Microsserviços",
                 "Testes de Mutação. Você não testa seu software corretamente"
         );
+    }
+
+    public static String checksum() {
+        return "03fe62de";
     }
 
 
@@ -103,6 +104,24 @@ public final class Fixture {
     }
 
     public static final class Videos {
+
+        public static AudioVideoMedia audioVideo(final VideoMediaType type) {
+            final var checksum = Fixture.checksum();
+            return AudioVideoMedia.with(
+                    checksum,
+                    type.name().toLowerCase(),
+                    "/videos/" + checksum
+            );
+        }
+
+        public static ImageMedia image(final VideoMediaType type) {
+            final var checksum = Fixture.checksum();
+            return ImageMedia.with(
+                    checksum,
+                    type.name().toLowerCase(),
+                    "/images/" + checksum
+            );
+        }
 
         private static final Video SYSTEM_DESIGN = Video.newVideo(
                 "System Design no Mercado Livre na prática",

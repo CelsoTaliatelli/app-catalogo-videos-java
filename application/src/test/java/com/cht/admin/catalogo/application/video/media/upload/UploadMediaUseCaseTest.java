@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.AdditionalAnswers.returnsFirstArg;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -62,8 +61,8 @@ class UploadMediaUseCaseTest extends UseCaseTest {
         final var actualOutput = useCase.execute(aCmd);
 
         // then
-        Assertions.assertEquals(expectedType, actualOutput.videoMediaType());
-        Assertions.assertEquals(expectedId.getValue(), actualOutput.id());
+        Assertions.assertEquals(expectedType, actualOutput.mediaType());
+        Assertions.assertEquals(expectedId.getValue(), actualOutput.videoId());
 
         verify(videoGateway, times(1)).findById(eq(expectedId));
 
@@ -103,8 +102,8 @@ class UploadMediaUseCaseTest extends UseCaseTest {
         final var actualOutput = useCase.execute(aCmd);
 
         // then
-        Assertions.assertEquals(expectedType, actualOutput.videoMediaType());
-        Assertions.assertEquals(expectedId.getValue(), actualOutput.id());
+        Assertions.assertEquals(expectedType, actualOutput.mediaType());
+        Assertions.assertEquals(expectedId.getValue(), actualOutput.videoId());
 
         verify(videoGateway, times(1)).findById(eq(expectedId));
 
@@ -144,8 +143,8 @@ class UploadMediaUseCaseTest extends UseCaseTest {
         final var actualOutput = useCase.execute(aCmd);
 
         // then
-        Assertions.assertEquals(expectedType, actualOutput.videoMediaType());
-        Assertions.assertEquals(expectedId.getValue(), actualOutput.id());
+        Assertions.assertEquals(expectedType, actualOutput.mediaType());
+        Assertions.assertEquals(expectedId.getValue(), actualOutput.videoId());
 
         verify(videoGateway, times(1)).findById(eq(expectedId));
 
@@ -185,8 +184,8 @@ class UploadMediaUseCaseTest extends UseCaseTest {
         final var actualOutput = useCase.execute(aCmd);
 
         // then
-        Assertions.assertEquals(expectedType, actualOutput.videoMediaType());
-        Assertions.assertEquals(expectedId.getValue(), actualOutput.id());
+        Assertions.assertEquals(expectedType, actualOutput.mediaType());
+        Assertions.assertEquals(expectedId.getValue(), actualOutput.videoId());
 
         verify(videoGateway, times(1)).findById(eq(expectedId));
 
@@ -226,8 +225,8 @@ class UploadMediaUseCaseTest extends UseCaseTest {
         final var actualOutput = useCase.execute(aCmd);
 
         // then
-        Assertions.assertEquals(expectedType, actualOutput.videoMediaType());
-        Assertions.assertEquals(expectedId.getValue(), actualOutput.id());
+        Assertions.assertEquals(expectedType, actualOutput.mediaType());
+        Assertions.assertEquals(expectedId.getValue(), actualOutput.videoId());
 
         verify(videoGateway, times(1)).findById(eq(expectedId));
 

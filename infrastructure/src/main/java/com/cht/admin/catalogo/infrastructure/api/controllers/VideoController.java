@@ -2,12 +2,18 @@ package com.cht.admin.catalogo.infrastructure.api.controllers;
 
 import com.cht.admin.catalogo.application.video.create.CreateVideoCommand;
 import com.cht.admin.catalogo.application.video.create.CreateVideoUseCase;
+import com.cht.admin.catalogo.application.video.delete.DeleteVideoUseCase;
 import com.cht.admin.catalogo.application.video.media.get.GetMediaUseCase;
 import com.cht.admin.catalogo.application.video.media.upload.UploadMediaUseCase;
+import com.cht.admin.catalogo.application.video.retrieve.get.GetVideoByIdUseCase;
+import com.cht.admin.catalogo.application.video.retrieve.list.ListVideosUseCase;
+import com.cht.admin.catalogo.application.video.update.UpdateVideoUseCase;
 import com.cht.admin.catalogo.domain.video.Resource;
 import com.cht.admin.catalogo.infrastructure.api.VideoAPI;
 import com.cht.admin.catalogo.infrastructure.utils.HashingUtils;
 import com.cht.admin.catalogo.infrastructure.video.models.CreateVideoRequest;
+import com.cht.admin.catalogo.infrastructure.video.models.VideoResponse;
+import com.cht.admin.catalogo.infrastructure.video.presenters.VideoApiPresenters;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,27 +26,27 @@ import java.util.Set;
 public class VideoController implements VideoAPI {
 
     private final CreateVideoUseCase createVideoUseCase;
-    //private final GetVideoByIdUseCase getVideoByIdUseCase;
-    //private final UpdateVideoUseCase updateVideoUseCase;
-    //private final DeleteVideoUseCase deleteVideoUseCase;
-    //private final ListVideosUseCase listVideosUseCase;
+    private final GetVideoByIdUseCase getVideoByIdUseCase;
+    private final UpdateVideoUseCase updateVideoUseCase;
+    private final DeleteVideoUseCase deleteVideoUseCase;
+    private final ListVideosUseCase listVideosUseCase;
     private final GetMediaUseCase getMediaUseCase;
     private final UploadMediaUseCase uploadMediaUseCase;
 
     public VideoController(
             final CreateVideoUseCase createVideoUseCase,
-            //final GetVideoByIdUseCase getVideoByIdUseCase,
-            //final UpdateVideoUseCase updateVideoUseCase,
-            //final DeleteVideoUseCase deleteVideoUseCase,
-            //final ListVideosUseCase listVideosUseCase,
+            final GetVideoByIdUseCase getVideoByIdUseCase,
+            final UpdateVideoUseCase updateVideoUseCase,
+            final DeleteVideoUseCase deleteVideoUseCase,
+            final ListVideosUseCase listVideosUseCase,
             final GetMediaUseCase getMediaUseCase,
             final UploadMediaUseCase uploadMediaUseCase
     ) {
         this.createVideoUseCase = Objects.requireNonNull(createVideoUseCase);
-        //this.getVideoByIdUseCase = Objects.requireNonNull(getVideoByIdUseCase);
-        //this.updateVideoUseCase = Objects.requireNonNull(updateVideoUseCase);
-        //this.deleteVideoUseCase = Objects.requireNonNull(deleteVideoUseCase);
-        //this.listVideosUseCase = Objects.requireNonNull(listVideosUseCase);
+        this.getVideoByIdUseCase = Objects.requireNonNull(getVideoByIdUseCase);
+        this.updateVideoUseCase = Objects.requireNonNull(updateVideoUseCase);
+        this.deleteVideoUseCase = Objects.requireNonNull(deleteVideoUseCase);
+        this.listVideosUseCase = Objects.requireNonNull(listVideosUseCase);
         this.getMediaUseCase = Objects.requireNonNull(getMediaUseCase);
         this.uploadMediaUseCase = Objects.requireNonNull(uploadMediaUseCase);
     }
@@ -104,6 +110,11 @@ public class VideoController implements VideoAPI {
         final var output = this.createVideoUseCase.execute(aCmd);
 
         return ResponseEntity.created(URI.create("/videos/" + output.id())).body(output);
+    }
+
+    @Override
+    public VideoResponse getById(final String anId) {
+        return VideoApiPresenters.present(this.getVideoByIdUseCase.execute(anId));
     }
 
 

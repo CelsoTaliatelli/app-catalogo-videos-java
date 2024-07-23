@@ -3,6 +3,7 @@ package com.cht.admin.catalogo.infrastructure.video.presenters;
 import com.cht.admin.catalogo.application.video.media.upload.UploadMediaOutput;
 import com.cht.admin.catalogo.application.video.retrieve.get.VideoOutput;
 import com.cht.admin.catalogo.application.video.retrieve.list.VideoListOutput;
+import com.cht.admin.catalogo.application.video.update.UpdateVideoOutput;
 import com.cht.admin.catalogo.domain.pagination.Pagination;
 import com.cht.admin.catalogo.domain.video.AudioVideoMedia;
 import com.cht.admin.catalogo.domain.video.ImageMedia;
