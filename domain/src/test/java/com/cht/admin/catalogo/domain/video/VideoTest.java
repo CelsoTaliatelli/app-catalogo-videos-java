@@ -1,6 +1,7 @@
 package com.cht.admin.catalogo.domain.video;
 
 import com.cht.admin.catalogo.domain.Genre.GenreID;
+import com.cht.admin.catalogo.domain.UnitTest;
 import com.cht.admin.catalogo.domain.castmember.CastMemberID;
 import com.cht.admin.catalogo.domain.category.CategoryID;
 import com.cht.admin.catalogo.domain.utils.InstantUtils;
@@ -11,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.time.Year;
 import java.util.Set;
 
-public class VideoTest {
+public class VideoTest extends UnitTest {
 
     @Test
     public void givenValidParams_whenCallsNewVideo_shouldInstantiate() {
