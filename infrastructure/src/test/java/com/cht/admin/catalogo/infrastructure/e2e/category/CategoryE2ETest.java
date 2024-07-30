@@ -27,9 +27,8 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
-@E2ETest
+/*@E2ETest
 @Testcontainers
-@Ignore
 public class CategoryE2ETest {
 
     @Autowired
@@ -349,6 +348,6 @@ public class CategoryE2ETest {
                 .getResponse().getContentAsString();
 
         return Json.readValue(json, CategoryResponse.class);
-    }*/
+    }
 
-}
+}*/

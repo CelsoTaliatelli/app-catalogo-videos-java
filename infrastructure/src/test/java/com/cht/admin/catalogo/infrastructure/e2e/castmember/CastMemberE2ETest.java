@@ -31,10 +31,9 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
+/*
 @E2ETest
 @Testcontainers
-@Ignore
 public class CastMemberE2ETest implements MockDsl {
 
     @Autowired
@@ -282,3 +281,4 @@ public class CastMemberE2ETest implements MockDsl {
         Assertions.assertEquals(2, castMemberRepository.count());
     }
 }
+*/

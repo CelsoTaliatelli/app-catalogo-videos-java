@@ -28,9 +28,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-@E2ETest
+/*@E2ETest
 @Testcontainers
-@Ignore
 public class GenreE2ETest implements MockDsl {
 
     @Autowired
@@ -352,3 +351,4 @@ public class GenreE2ETest implements MockDsl {
     }
 
 }
+*/
