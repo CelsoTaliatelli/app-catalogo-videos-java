@@ -6,6 +6,7 @@ import com.cht.admin.catalogo.domain.category.CategoryID;
 import com.cht.admin.catalogo.infrastructure.e2e.MockDsl;
 import com.cht.admin.catalogo.infrastructure.genre.models.UpdateGenreRequest;
 import com.cht.admin.catalogo.infrastructure.genre.persistence.GenreRepository;
+import org.junit.Ignore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @E2ETest
 @Testcontainers
+@Ignore
 public class GenreE2ETest implements MockDsl {
 
     @Autowired

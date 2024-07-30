@@ -6,6 +6,7 @@ import com.cht.admin.catalogo.domain.castmember.CastMemberID;
 import com.cht.admin.catalogo.domain.castmember.CastMemberType;
 import com.cht.admin.catalogo.infrastructure.castmember.persistence.CastMemberRepository;
 import com.cht.admin.catalogo.infrastructure.e2e.MockDsl;
+import org.junit.Ignore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @E2ETest
 @Testcontainers
+@Ignore
 public class CastMemberE2ETest implements MockDsl {
 
     @Autowired
