@@ -37,7 +37,7 @@ public class GenreResponseTest {
         final var actualJson = this.json.write(response);
 
         Assertions.assertThat(actualJson)
-                .hasJsonPathValue("$.videoId", expectedId)
+                .hasJsonPathValue("$.id", expectedId)
                 .hasJsonPathValue("$.name", expectedName)
                 .hasJsonPathValue("$.categories_id", expectedCategories)
                 .hasJsonPathValue("$.is_active", expectedIsActive)
@@ -58,7 +58,7 @@ public class GenreResponseTest {
 
         final var json = """
                 {
-                  "videoId": "%s",
+                  "id": "%s",
                   "name": "%s",
                   "categories_id": ["%s"],
                   "is_active": %s,

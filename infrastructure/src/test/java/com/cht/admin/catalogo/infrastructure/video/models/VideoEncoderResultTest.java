@@ -30,7 +30,7 @@ public class VideoEncoderResultTest {
         final var json = """
                     {
                       "status": "%s",
-                      "videoId": "%s",
+                      "id": "%s",
                       "output_bucket_path": "%s",
                       "video": {
                         "encoded_video_folder": "%s",
@@ -69,7 +69,7 @@ public class VideoEncoderResultTest {
         final var actualResult = this.json.write(aResult);
 
         Assertions.assertThat(actualResult)
-                .hasJsonPathValue("$.videoId", expectedId)
+                .hasJsonPathValue("$.id", expectedId)
                 .hasJsonPathValue("$.output_bucket_path", expectedOutputBucket)
                 .hasJsonPathValue("$.status", expectedStatus)
                 .hasJsonPathValue("$.video.encoded_video_folder", expectedEncoderVideoFolder)

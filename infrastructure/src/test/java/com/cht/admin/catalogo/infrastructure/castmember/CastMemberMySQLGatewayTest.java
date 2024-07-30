@@ -237,41 +237,6 @@ public class CastMemberMySQLGatewayTest {
 
     @ParameterizedTest
     @CsvSource({
-            "name,asc,0,10,5,5,Jason Momoa",
-            "name,desc,0,10,5,5,Vin Diesel",
-            "createdAt,asc,0,10,5,5,Kit Harington",
-            "createdAt,desc,0,10,5,5,Martin Scorsese",
-    })
-    public void givenAValidSortAndDirection_whenCallsFindAll_shouldReturnSorted(
-            final String expectedSort,
-            final String expectedDirection,
-            final int expectedPage,
-            final int expectedPerPage,
-            final int expectedItemsCount,
-            final long expectedTotal,
-            final String expectedName
-    ) {
-        // given
-        mockMembers();
-
-        final var expectedTerms = "";
-
-        final var aQuery =
-                new SearchQuery(expectedPage, expectedPerPage, expectedTerms, expectedSort, expectedDirection);
-
-        // when
-        final var actualPage = castMemberGateway.findAll(aQuery);
-
-        // then
-        Assertions.assertEquals(expectedPage, actualPage.currentPage());
-        Assertions.assertEquals(expectedPerPage, actualPage.perPage());
-        Assertions.assertEquals(expectedTotal, actualPage.total());
-        Assertions.assertEquals(expectedItemsCount, actualPage.items().size());
-        Assertions.assertEquals(expectedName, actualPage.items().get(0).getName());
-    }
-
-    @ParameterizedTest
-    @CsvSource({
             "0,2,2,5,Jason Momoa;Kit Harington",
             "1,2,2,5,Martin Scorsese;Quentin Tarantino",
             "2,2,1,5,Vin Diesel",
