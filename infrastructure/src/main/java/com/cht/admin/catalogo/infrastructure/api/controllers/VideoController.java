@@ -11,15 +11,21 @@ import com.cht.admin.catalogo.application.video.retrieve.get.GetVideoByIdUseCase
 import com.cht.admin.catalogo.application.video.retrieve.list.ListVideosUseCase;
 import com.cht.admin.catalogo.application.video.update.UpdateVideoCommand;
 import com.cht.admin.catalogo.application.video.update.UpdateVideoUseCase;
+import com.cht.admin.catalogo.domain.Genre.GenreID;
+import com.cht.admin.catalogo.domain.castmember.CastMemberID;
+import com.cht.admin.catalogo.domain.category.CategoryID;
 import com.cht.admin.catalogo.domain.exceptions.NotificationException;
+import com.cht.admin.catalogo.domain.pagination.Pagination;
 import com.cht.admin.catalogo.domain.validation.Error;
 import com.cht.admin.catalogo.domain.video.Resource;
 import com.cht.admin.catalogo.domain.video.VideoMediaType;
 import com.cht.admin.catalogo.domain.video.VideoResource;
+import com.cht.admin.catalogo.domain.video.VideoSearchQuery;
 import com.cht.admin.catalogo.infrastructure.api.VideoAPI;
 import com.cht.admin.catalogo.infrastructure.utils.HashingUtils;
 import com.cht.admin.catalogo.infrastructure.video.models.CreateVideoRequest;
 import com.cht.admin.catalogo.infrastructure.video.models.UpdateVideoRequest;
+import com.cht.admin.catalogo.infrastructure.video.models.VideoListResponse;
 import com.cht.admin.catalogo.infrastructure.video.models.VideoResponse;
 import com.cht.admin.catalogo.infrastructure.video.presenters.VideoApiPresenters;
 import org.springframework.http.HttpHeaders;
@@ -31,6 +37,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.net.URI;
 import java.util.Objects;
 import java.util.Set;
+
+import static com.cht.admin.catalogo.domain.utils.CollectionUtils.mapTo;
 
 @RestController
 public class VideoController implements VideoAPI {
@@ -60,6 +68,28 @@ public class VideoController implements VideoAPI {
         this.getMediaUseCase = Objects.requireNonNull(getMediaUseCase);
         this.uploadMediaUseCase = Objects.requireNonNull(uploadMediaUseCase);
     }
+
+    @Override
+    public Pagination<VideoListResponse> list(
+            final String search,
+            final int page,
+            final int perPage,
+            final String sort,
+            final String direction,
+            final Set<String> castMembers,
+            final Set<String> categories,
+            final Set<String> genres
+    ) {
+        final var castMemberIDs = mapTo(castMembers, CastMemberID::from);
+        final var categoriesIDs = mapTo(categories, CategoryID::from);
+        final var genresIDs = mapTo(genres, GenreID::from);
+
+        final var aQuery =
+                new VideoSearchQuery(page, perPage, search, sort, direction, castMemberIDs, categoriesIDs, genresIDs);
+
+        return VideoApiPresenters.present(this.listVideosUseCase.execute(aQuery));
+    }
+
 
     @Override
     public ResponseEntity<?> createFull(

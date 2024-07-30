@@ -52,7 +52,6 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.http.HttpHeaders.CONTENT_DISPOSITION;
-import static org.springframework.messaging.MessageHeaders.CONTENT_TYPE;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -688,7 +687,7 @@ public class VideoAPITest {
 
         // then
         response.andExpect(status().isOk())
-                .andExpect(header().string(CONTENT_TYPE, expectedMedia.contentType()))
+                .andExpect(header().string("Content-Type", expectedMedia.contentType()))
                 .andExpect(header().string(CONTENT_LENGTH, String.valueOf(expectedMedia.content().length)))
                 .andExpect(header().string(CONTENT_DISPOSITION, "attachment; filename=%s".formatted(expectedMedia.name())))
                 .andExpect(content().bytes(expectedMedia.content()));
@@ -727,7 +726,7 @@ public class VideoAPITest {
         // then
         response.andExpect(status().isCreated())
                 .andExpect(header().string(LOCATION, "/videos/%s/medias/%s".formatted(expectedId.getValue(), expectedType.name())))
-                .andExpect(header().string(CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(jsonPath("$.video_id", equalTo(expectedId.getValue())))
                 .andExpect(jsonPath("$.media_type", equalTo(expectedType.name())));
 
@@ -763,7 +762,7 @@ public class VideoAPITest {
 
         // then
         response.andExpect(status().isUnprocessableEntity())
-                .andExpect(header().string(CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(jsonPath("$.message", equalTo("Invalid INVALID for VideoMediaType")));
     }
 }

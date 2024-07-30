@@ -87,7 +87,7 @@ public class CategoryAPITest {
         response.andExpect(status().isCreated())
                 .andExpect(header().string("Location", "/categories/123"))
                 .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.videoId", equalTo("123")));
+                .andExpect(jsonPath("$.id", equalTo("123")));
 
         verify(createCategoryUseCase, times(1)).execute(argThat(cmd ->
                 Objects.equals(expectedName, cmd.name())
@@ -186,7 +186,7 @@ public class CategoryAPITest {
                 .thenReturn(CategoryOutput.from(aCategory));
 
         // when
-        final var request = get("/categories/{videoId}", expectedId)
+        final var request = get("/categories/{id}", expectedId)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON);
 
@@ -196,7 +196,7 @@ public class CategoryAPITest {
         // then
         response.andExpect(status().isOk())
                 .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.videoId", equalTo(expectedId)))
+                .andExpect(jsonPath("$.id", equalTo(expectedId)))
                 .andExpect(jsonPath("$.name", equalTo(expectedName)))
                 .andExpect(jsonPath("$.description", equalTo(expectedDescription)))
                 .andExpect(jsonPath("$.is_active", equalTo(expectedIsActive)))
@@ -217,7 +217,7 @@ public class CategoryAPITest {
                 .thenThrow(NotFoundException.with(Category.class, expectedId));
 
         // when
-        final var request = get("/categories/{videoId}", expectedId.getValue())
+        final var request = get("/categories/{id}", expectedId.getValue())
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON);
 
@@ -244,7 +244,7 @@ public class CategoryAPITest {
                 new UpdateCategoryRequest(expectedName, expectedDescription, expectedIsActive);
 
         // when
-        final var request = put("/categories/{videoId}", expectedId)
+        final var request = put("/categories/{id}", expectedId)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(aCommand));
@@ -255,7 +255,7 @@ public class CategoryAPITest {
         // then
         response.andExpect(status().isOk())
                 .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.videoId", equalTo(expectedId)));
+                .andExpect(jsonPath("$.id", equalTo(expectedId)));
 
         verify(updateCategoryUseCase, times(1)).execute(argThat(cmd ->
                 Objects.equals(expectedName, cmd.name())
@@ -282,7 +282,7 @@ public class CategoryAPITest {
                 new UpdateCategoryRequest(expectedName, expectedDescription, expectedIsActive);
 
         // when
-        final var request = put("/categories/{videoId}", expectedId)
+        final var request = put("/categories/{id}", expectedId)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(aCommand));
@@ -320,7 +320,7 @@ public class CategoryAPITest {
                 new UpdateCategoryRequest(expectedName, expectedDescription, expectedIsActive);
 
         // when
-        final var request = put("/categories/{videoId}", expectedId)
+        final var request = put("/categories/{id}", expectedId)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(aCommand));
@@ -349,7 +349,7 @@ public class CategoryAPITest {
                 .when(deleteCategoryUseCase).execute(any());
 
         // when
-        final var request = delete("/categories/{videoId}", expectedId)
+        final var request = delete("/categories/{id}", expectedId)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON);
 
@@ -399,7 +399,7 @@ public class CategoryAPITest {
                 .andExpect(jsonPath("$.per_page", equalTo(expectedPerPage)))
                 .andExpect(jsonPath("$.total", equalTo(expectedTotal)))
                 .andExpect(jsonPath("$.items", hasSize(expectedItemsCount)))
-                .andExpect(jsonPath("$.items[0].videoId", equalTo(aCategory.getId().getValue())))
+                .andExpect(jsonPath("$.items[0].id", equalTo(aCategory.getId().getValue())))
                 .andExpect(jsonPath("$.items[0].name", equalTo(aCategory.getName())))
                 .andExpect(jsonPath("$.items[0].description", equalTo(aCategory.getDescription())))
                 .andExpect(jsonPath("$.items[0].is_active", equalTo(aCategory.isActive())))

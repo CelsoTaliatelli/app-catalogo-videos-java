@@ -128,8 +128,9 @@ public class CreateVideoUseCaseTest extends UseCaseTest {
 
     private void mockImageMedia() {
         when(mediaResourceGateway.storeImage(any(), any())).thenAnswer(t -> {
-            final var resource = t.getArgument(1, Resource.class);
-            return ImageMedia.with(UUID.randomUUID().toString(), resource.name(), "/img");
+            final var videoResource = t.getArgument(1, VideoResource.class);
+            final var resource = videoResource.resource();
+            return ImageMedia.with(resource.checksum(), resource.name(), "/img");
         });
     }
 

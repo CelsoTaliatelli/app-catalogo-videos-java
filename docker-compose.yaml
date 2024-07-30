@@ -1,9 +1,9 @@
 version: '3.7'
-
+#
 services:
   app:
     container_name: adm_videos_app
-    build: .
+    image: celsotaliatelli/admin-catalogo-videos-java:latest
     profiles: ["app"]
     restart: unless-stopped
     env_file:

@@ -1,7 +1,9 @@
 package com.cht.admin.catalogo.infrastructure.api;
 
+import com.cht.admin.catalogo.domain.pagination.Pagination;
 import com.cht.admin.catalogo.infrastructure.video.models.CreateVideoRequest;
 import com.cht.admin.catalogo.infrastructure.video.models.UpdateVideoRequest;
+import com.cht.admin.catalogo.infrastructure.video.models.VideoListResponse;
 import com.cht.admin.catalogo.infrastructure.video.models.VideoResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -18,6 +20,23 @@ import java.util.Set;
 @RequestMapping(value = "videos")
 @Tag(name = "Video")
 public interface VideoAPI {
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "List all videos paginated")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Videos listed"),
+            @ApiResponse(responseCode = "422", description = "A query param was invalid"),
+            @ApiResponse(responseCode = "500", description = "An internal server error was thrown"),
+    })
+    Pagination<VideoListResponse> list(
+            @RequestParam(name = "search", required = false, defaultValue = "") String search,
+            @RequestParam(name = "page", required = false, defaultValue = "0") int page,
+            @RequestParam(name = "perPage", required = false, defaultValue = "25") int perPage,
+            @RequestParam(name = "sort", required = false, defaultValue = "title") String sort,
+            @RequestParam(name = "dir", required = false, defaultValue = "asc") String direction,
+            @RequestParam(name = "cast_members_ids", required = false, defaultValue = "") Set<String> castMembers,
+            @RequestParam(name = "categories_ids", required = false, defaultValue = "") Set<String> categories,
+            @RequestParam(name = "genres_ids", required = false, defaultValue = "") Set<String> genres
+    );
 
     @PostMapping(
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
@@ -68,6 +87,19 @@ public interface VideoAPI {
     })
     VideoResponse getById(@PathVariable(name = "videoId") String id);
 
+
+    @PutMapping(
+            value = "{id}",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    @Operation(summary = "Update a video by it's identifier")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Video updated successfully"),
+            @ApiResponse(responseCode = "404", description = "Video was not found"),
+            @ApiResponse(responseCode = "422", description = "A validation error was thrown"),
+            @ApiResponse(responseCode = "500", description = "An internal server error was thrown"),
+    })
     ResponseEntity<?> update(
             @PathVariable(name = "id") String id,
             @RequestBody UpdateVideoRequest payload
