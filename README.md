@@ -218,7 +218,7 @@ docker compose --profile app stop
 2. Configuração das properties:
    ```properties
        keycloak:
-           realm: fc3-codeflix
+           realm: codeflix
            host: http://localhost:8443
       
        spring:
